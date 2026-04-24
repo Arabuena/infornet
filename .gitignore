@@ -1,0 +1,16 @@
+# Local Moodle config (contains credentials)
+/config.php
+/config.php.bak
+
+# Local runtime/cache artifacts
+/cache/*
+/localcache/*
+/temp/*
+/trashdir/*
+
+# IDE/OS files
+/.vscode/
+/.idea/
+*.log
+.DS_Store
+Thumbs.db

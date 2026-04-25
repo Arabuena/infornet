@@ -25,11 +25,11 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          protocol: ftps
+          protocol: ftp
           port: 21
           local-dir: ./
-          # FTP root on Hostinger is usually public_html. Keep deploy scoped to Moodle only.
-          server-dir: /ava/moodle/
+          # Hostinger usually exposes /public_html as upload root.
+          server-dir: /public_html/ava/moodle/
           dangerous-clean-slate: false
           exclude: |
             **/.git*

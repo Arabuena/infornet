@@ -20,16 +20,17 @@ jobs:
           sed -i "s/MOODLE_DB_PASS/${{ secrets.MOODLE_DB_PASS }}/g" config.php
 
       - name: Configurar chave SSH
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
-          chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Adicionar host ao known_hosts
+        run: ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy via rsync sobre SSH
         run: |
           rsync -az --delete \
-            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" \
+            -e "ssh -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" \
             --exclude='.git' \
             --exclude='.github' \
             --exclude='node_modules' \
@@ -39,7 +40,3 @@ jobs:
             --exclude='commit2_out.txt' \
             ./ \
             ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/domains/arabuena.com/public_html/ava/moodle/
-
-      - name: Limpar chave SSH
-        if: always()
-        run: rm -f ~/.ssh/deploy_key

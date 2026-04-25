@@ -3,7 +3,6 @@
 /config.php.bak
 
 # Local runtime/cache artifacts
-/cache/*
 /localcache/*
 /temp/*
 /trashdir/*

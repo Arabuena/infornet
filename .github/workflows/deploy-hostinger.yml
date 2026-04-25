@@ -3,11 +3,11 @@ name: Deploy to Hostinger
 on:
   push:
     branches:
-      - main  # Altere para o nome do seu branch principal se for diferente
+      - main
 
 jobs:
   deploy:
-    name: Deploy via SFTP
+    name: Deploy via SSH/rsync
     runs-on: ubuntu-latest
 
     steps:
@@ -19,24 +19,27 @@ jobs:
           cp .github/workflows/config-producao.php config.php
           sed -i "s/MOODLE_DB_PASS/${{ secrets.MOODLE_DB_PASS }}/g" config.php
 
-      - name: Deploy via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USER }}
-          password: ${{ secrets.FTP_PASS }}
-          protocol: ftp
-          port: 21
-          local-dir: ./
-          # Hostinger usually exposes /public_html as upload root.
-          server-dir: /public_html/ava/moodle/
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            .github/**
-            config.php.bak
-            add_out.txt
-            commit_out.txt
-            commit2_out.txt
+      - name: Configurar chave SSH
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy via rsync sobre SSH
+        run: |
+          rsync -az --delete \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='config.php.bak' \
+            --exclude='add_out.txt' \
+            --exclude='commit_out.txt' \
+            --exclude='commit2_out.txt' \
+            ./ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/${{ secrets.SSH_USER }}/domains/arabuena.com/public_html/ava/moodle/
+
+      - name: Limpar chave SSH
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

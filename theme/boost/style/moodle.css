@@ -35308,21 +35308,28 @@ textarea[data-auto-rows] {
 }
 
 .pagelayout-login .btn-primary {
+  --bs-btn-bg: #ff6b2b;
+  --bs-btn-border-color: #ff6b2b;
+  --bs-btn-hover-bg: #f25a1c;
+  --bs-btn-hover-border-color: #f25a1c;
+  --bs-btn-active-bg: #e84e0f;
+  --bs-btn-active-border-color: #e84e0f;
+  --bs-btn-disabled-bg: #ffaa88;
+  --bs-btn-disabled-border-color: #ffaa88;
   border: 0;
-  border-radius: 0.75rem;
-  background: linear-gradient(135deg, #ff6b2b 0%, #e84e0f 100%);
+  border-radius: 2rem !important;
+  background: linear-gradient(135deg, #ff6b2b 0%, #e84e0f 100%) !important;
   box-shadow: 0 8px 22px rgba(232, 78, 15, 0.28);
-  color: #fff;
   font-weight: 600;
-  letter-spacing: 0.02em;
-  transition: transform 0.16s ease, box-shadow 0.16s ease;
+  letter-spacing: 0.03em;
+  padding: 0.6rem 2rem;
+  transition: transform 0.16s ease, box-shadow 0.16s ease, background 0.2s ease;
 }
 .pagelayout-login .btn-primary:hover,
 .pagelayout-login .btn-primary:focus {
-  background: linear-gradient(135deg, #ff7d44 0%, #f25a1c 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 12px 26px rgba(232, 78, 15, 0.38);
-  color: #fff;
+  background: linear-gradient(135deg, #ff7d44 0%, #f25a1c 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(232, 78, 15, 0.4);
 }
 .login-container::after {
   content: "Arabuena EAD \2022  Plataforma de Ensino";

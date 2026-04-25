@@ -35222,11 +35222,36 @@ textarea[data-auto-rows] {
 }
 
 .pagelayout-login #page {
-  background: #f8f9fa;
-  background-image: linear-gradient(to right, #f8f9fa 0%, #dee2e6 100%);
+  background: linear-gradient(140deg, #eef5f7 0%, #e1edf4 48%, #dae9f3 100%);
+  position: relative;
+  overflow: hidden;
+}
+.pagelayout-login #page::before {
+  content: "";
+  position: absolute;
+  width: 36rem;
+  height: 36rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(29, 139, 173, 0.2) 0%, rgba(29, 139, 173, 0) 70%);
+  top: -10rem;
+  right: -8rem;
+  pointer-events: none;
+}
+.pagelayout-login #page::after {
+  content: "";
+  position: absolute;
+  width: 30rem;
+  height: 30rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255, 146, 43, 0.18) 0%, rgba(255, 146, 43, 0) 70%);
+  left: -10rem;
+  bottom: -8rem;
+  pointer-events: none;
 }
 .pagelayout-login #page div[role=main] {
   height: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .login-wrapper {
@@ -35237,11 +35262,14 @@ textarea[data-auto-rows] {
 }
 
 .login-container {
-  background-color: #fff;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
   padding: 3rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  box-shadow: 0 24px 60px rgba(17, 41, 63, 0.16);
   margin-bottom: 2rem;
-  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 1.1rem;
 }
 .login-container .login-languagemenu {
   display: flex;
@@ -35279,9 +35307,41 @@ textarea[data-auto-rows] {
   margin: 0.5rem 0;
 }
 
+.pagelayout-login .btn-primary {
+  border: 0;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #ff6b2b 0%, #e84e0f 100%);
+  box-shadow: 0 8px 22px rgba(232, 78, 15, 0.28);
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+.pagelayout-login .btn-primary:hover,
+.pagelayout-login .btn-primary:focus {
+  background: linear-gradient(135deg, #ff7d44 0%, #f25a1c 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(232, 78, 15, 0.38);
+  color: #fff;
+}
+.login-container::after {
+  content: "Arabuena EAD \2022  Plataforma de Ensino";
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  color: rgba(29, 56, 88, 0.45);
+  letter-spacing: 0.04em;
+}
 @media (min-width: 768px) {
   .login-container {
-    width: 500px !important; /* stylelint-disable-line declaration-no-important */
+    width: 520px !important; /* stylelint-disable-line declaration-no-important */
+  }
+}
+@media (max-width: 767.98px) {
+  .login-container {
+    padding: 1.5rem;
+    border-radius: 0.9rem;
   }
 }
 /* modules.less */

@@ -1,0 +1,42 @@
+name: Deploy to Hostinger
+
+on:
+  push:
+    branches:
+      - main  # Altere para o nome do seu branch principal se for diferente
+
+jobs:
+  deploy:
+    name: Deploy via SFTP
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Ajustar config.php para produção
+        run: |
+          cp .github/workflows/config-producao.php config.php
+          sed -i "s/MOODLE_DB_PASS/${{ secrets.MOODLE_DB_PASS }}/g" config.php
+
+      - name: Deploy via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          protocol: ftps
+          port: 21
+          local-dir: ./
+          # FTP root on Hostinger is usually public_html. Keep deploy scoped to Moodle only.
+          server-dir: /ava/moodle/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            .github/**
+            config.php.bak
+            add_out.txt
+            commit_out.txt
+            commit2_out.txt

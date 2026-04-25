@@ -1,12 +1,12 @@
-$loginbackground-gradient-from: $gray-100 !default;
-$loginbackground-gradient-to: $gray-300 !default;
-$logincontainer-bg: $white !default;
+$loginbackground-gradient-from: #eef5f7 !default;
+$loginbackground-gradient-to: #dce7ee !default;
+$logincontainer-bg: rgba(255, 255, 255, 0.9) !default;
 $logincontainer-padding: 3rem !default;
-$logincontainer-shadow: $box-shadow !default;
+$logincontainer-shadow: 0 24px 60px rgba(17, 41, 63, 0.16) !default;
 $logindivider-margin-top: 1.5rem !default;
 $logindivider-margin-bottom: 1.5rem !default;
-$logindivider-border: $border-color !default;
-$login-identity-provider-btn-border: $border-color !default;
+$logindivider-border: rgba(27, 56, 88, 0.18) !default;
+$login-identity-provider-btn-border: rgba(27, 56, 88, 0.25) !default;
 
 .pagelayout-login #region-main {
     border: 0;
@@ -14,10 +14,38 @@ $login-identity-provider-btn-border: $border-color !default;
 }
 
 .pagelayout-login #page {
-    background: $loginbackground-gradient-from;
-    @include gradient-x($loginbackground-gradient-from, $loginbackground-gradient-to, 0%, 100%);
+    background: linear-gradient(140deg, #eef5f7 0%, #e1edf4 48%, #dae9f3 100%);
+    position: relative;
+    overflow: hidden;
+
+    &::before,
+    &::after {
+        content: "";
+        position: absolute;
+        border-radius: 999px;
+        pointer-events: none;
+    }
+
+    &::before {
+        width: 36rem;
+        height: 36rem;
+        background: radial-gradient(circle, rgba(29, 139, 173, 0.2) 0%, rgba(29, 139, 173, 0) 70%);
+        top: -10rem;
+        right: -8rem;
+    }
+
+    &::after {
+        width: 30rem;
+        height: 30rem;
+        background: radial-gradient(circle, rgba(255, 146, 43, 0.18) 0%, rgba(255, 146, 43, 0) 70%);
+        left: -10rem;
+        bottom: -8rem;
+    }
+
     div[role="main"] {
         height: 100%;
+        position: relative;
+        z-index: 1;
     }
 }
 
@@ -26,14 +54,19 @@ $login-identity-provider-btn-border: $border-color !default;
     align-items: center;
     justify-content: center;
     height: 100%;
+    padding: 2rem 1rem;
 }
 
 .login-container {
-    background-color: $logincontainer-bg;
+    background: $logincontainer-bg;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
     padding: $logincontainer-padding;
     box-shadow: $logincontainer-shadow;
     margin-bottom: 2rem;
-    @include border-radius();
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 1.1rem;
+
     .login-languagemenu {
         display: flex;
         justify-content: flex-start;
@@ -42,11 +75,13 @@ $login-identity-provider-btn-border: $border-color !default;
             overflow-y: auto;
         }
     }
+
     .login-logo {
         display: flex;
         justify-content: center;
-        margin-bottom: 1rem;
+        margin-bottom: 1.25rem;
     }
+
     .login-divider {
         margin-top: $logindivider-margin-top;
         margin-bottom: $logindivider-margin-bottom;
@@ -55,21 +90,55 @@ $login-identity-provider-btn-border: $border-color !default;
 
     h1.login-heading {
         font-size: $h2-font-size;
+        font-weight: 700;
+        color: #1b3858;
+        letter-spacing: 0.01em;
     }
 
     h2.login-heading {
         font-size: $h4-font-size;
+        color: #2e5675;
     }
+
+    .form-control {
+        border-radius: 0.7rem;
+        border-color: rgba(35, 80, 110, 0.22);
+        box-shadow: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+        &:focus {
+            border-color: #1d8bad;
+            box-shadow: 0 0 0 0.2rem rgba(29, 139, 173, 0.16);
+        }
+    }
+
+    .btn-primary {
+        border: 0;
+        border-radius: 0.75rem;
+        background: linear-gradient(135deg, #1d8bad 0%, #246ea0 100%);
+        box-shadow: 0 8px 22px rgba(29, 139, 173, 0.28);
+        transition: transform 0.16s ease, box-shadow 0.16s ease;
+
+        &:hover,
+        &:focus {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 26px rgba(29, 139, 173, 0.34);
+        }
+    }
+
     .login-identityproviders {
         .login-identityprovider-btn {
             border: $border-width solid $login-identity-provider-btn-border;
+            border-radius: 0.7rem;
         }
     }
+
     .divider {
         width: $border-width;
-        background-color: $gray-300;
+        background-color: rgba(27, 56, 88, 0.2);
         height: $font-size-base * 2;
     }
+
     .action-menu-trigger {
         a {
             margin: 0.5rem 0;
@@ -79,6 +148,24 @@ $login-identity-provider-btn-border: $border-color !default;
 
 @include media-breakpoint-up(md) {
     .login-container {
-        width: 500px !important; /* stylelint-disable-line declaration-no-important */
+        width: 520px !important; /* stylelint-disable-line declaration-no-important */
     }
+}
+
+@include media-breakpoint-down(sm) {
+    .login-container {
+        padding: 1.5rem;
+        border-radius: 0.9rem;
+    }
+}
+
+/* Arabuena EAD - deploy test marker */
+.login-container::after {
+    content: "Arabuena EAD \2022  Plataforma de Ensino";
+    display: block;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.75rem;
+    color: rgba(29, 56, 88, 0.45);
+    letter-spacing: 0.04em;
 }

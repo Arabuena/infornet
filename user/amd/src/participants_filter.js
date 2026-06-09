@@ -38,6 +38,27 @@ export const init = filterRegionId => {
 
     // Create and initialize filter.
     const coreFilter = new CoreFilter(filterSet, function(filters, pendingPromise) {
+        // The courseid filter is required by the backend and must always be an integer.
+        // If a stale/overridden template omits data-table-course-id, fall back to the URL id.
+        const getCourseId = () => {
+            const dataCourseId = Number.parseInt(filterSet.dataset.tableCourseId, 10);
+            if (!Number.isNaN(dataCourseId)) {
+                return dataCourseId;
+            }
+
+            const urlCourseId = Number.parseInt(new URLSearchParams(window.location.search).get('id'), 10);
+            return Number.isNaN(urlCourseId) ? null : urlCourseId;
+        };
+
+        const courseId = getCourseId();
+        if (courseId !== null) {
+            filters.courseid = {
+                name: 'courseid',
+                jointype: 1,
+                values: [courseId],
+            };
+        }
+
         DynamicTable.setFilters(
             DynamicTable.getTableFromId(filterSet.dataset.tableRegion),
             {

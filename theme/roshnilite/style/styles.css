@@ -62,6 +62,7 @@
       background: [[setting:brandcolor]];
       border: 0.06rem solid [[setting:brandcolor]];
       color: #fff;
+      border-radius: 1.5rem;
   }
   input[type="submit"]:hover, .btn-primary:not(:disabled):not(.disabled):active{
       background: [[setting:brandcolor]];
@@ -120,8 +121,12 @@
   .btn-primary{
       background: [[setting:brandcolor]];
       border:0.06rem solid [[setting:brandcolor]];
+      border-radius: 1.5rem;
   }
   .btn-primary:hover{
+      background: [[setting:brandcolor]];
+      border-color: [[setting:brandcolor]];
+      opacity: 0.88;
   }
   .block_navigation .block_tree .tree_item.branch span{
       color: [[setting:brandcolor]];
@@ -1562,3 +1567,496 @@
         margin: 0;
     }
   }
+
+/* ===================================================
+   HOMEPAGE REDESIGN – visual improvements
+   =================================================== */
+
+/* ---------- HERO SLIDER ---------- */
+#home-slide {
+    position: relative;
+    overflow: hidden;
+}
+#home-slide .carousel-item:before {
+    background: linear-gradient(135deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.30) 100%);
+}
+#home-slide .carousel-caption {
+    text-align: left;
+    max-width: 48rem;
+    left: 8%;
+    right: auto;
+    bottom: 28%;
+}
+#home-slide h1,
+#home-slide h2,
+#home-slide h3 {
+    text-shadow: 0 2px 12px rgba(0,0,0,.55);
+    color: #fff !important;
+    letter-spacing: 0.03em;
+}
+.btn-theme {
+    border-radius: 2rem;
+    padding: 0.85rem 2.2rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    box-shadow: 0 4px 18px rgba(231,76,60,.45);
+    transition: transform 0.22s, box-shadow 0.22s, background 0.22s;
+}
+.btn-theme:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(231,76,60,.55);
+}
+#home-slide .carousel-indicators li {
+    border-radius: 50%;
+    transition: transform 0.2s;
+}
+#home-slide .carousel-indicators .active {
+    transform: scale(1.35);
+    background-color: [[setting:brandcolor]];
+}
+
+/* ---------- SECTION HEADINGS ---------- */
+.heading-large {
+    position: relative;
+    padding-bottom: 1rem;
+    letter-spacing: 0.04em;
+}
+.heading-large::after {
+    content: "";
+    display: block;
+    width: 4rem;
+    height: 4px;
+    background: [[setting:brandcolor]];
+    border-radius: 2px;
+    margin: 0.6rem auto 0;
+}
+.header-small {
+    color: #666;
+    line-height: 1.7;
+}
+
+/* ---------- LOGIN BAR ---------- */
+.loginnavbar {
+    background: linear-gradient(90deg, rgba(0,0,0,.75) 0%, rgba(50,50,50,.65) 100%);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-bottom: 2px solid [[setting:brandcolor]];
+}
+.loginnavbar input[type="text"],
+.loginnavbar input[type="password"] {
+    background: rgba(255,255,255,.10);
+    border: 1px solid rgba(255,255,255,.25);
+    color: #fff;
+    border-radius: 0.4rem;
+    padding: 0.4rem 0.8rem;
+    transition: border 0.2s;
+}
+.loginnavbar input[type="text"]:focus,
+.loginnavbar input[type="password"]:focus {
+    border-color: [[setting:brandcolor]];
+    background: rgba(255,255,255,.15);
+}
+.loginnavbar input[type="submit"] {
+    border-radius: 2rem !important;
+    padding: 0.4rem 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    box-shadow: 0 3px 12px rgba(231,76,60,.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.loginnavbar input[type="submit"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(231,76,60,.55);
+}
+
+/* ---------- FEATURE CARDS (about-items) ---------- */
+.describe-usp {
+    background: #fafafa;
+    padding-bottom: 3rem;
+}
+.about-item {
+    border-radius: 1rem;
+    border: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,.07);
+    transition: transform 0.28s cubic-bezier(.34,1.56,.64,1), box-shadow 0.28s;
+    height: auto;
+    min-height: 22rem;
+    padding-bottom: 2rem;
+}
+.about-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 40px rgba(231,76,60,.22);
+    background: [[setting:brandcolor]];
+}
+.about-item .about-item-img-wr {
+    border-color: [[setting:brandcolor]];
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(231,76,60,.18);
+    transition: box-shadow 0.28s;
+}
+.about-item:hover .about-item-img-wr {
+    box-shadow: 0 0 0 4px rgba(255,255,255,.45);
+}
+.about-item a {
+    font-weight: 700;
+    color: #333;
+    display: block;
+    margin-top: 1rem;
+    transition: color 0.2s;
+}
+.about-item:hover a,
+.about-item:hover .about-text,
+.about-item:hover .text_to_html {
+    color: #fff !important;
+}
+
+/* ---------- VER TODOS OS CURSOS ---------- */
+.btn-view-all {
+    color: [[setting:brandcolor]];
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    border: none;
+    position: relative;
+    transition: letter-spacing 0.25s;
+}
+.btn-view-all::before {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 3px;
+    background: [[setting:brandcolor]];
+    border-radius: 2px;
+    margin: 0 auto 0.75rem;
+}
+.btn-view-all:hover {
+    letter-spacing: 0.14em;
+    color: [[setting:brandcolor]];
+    text-decoration: none;
+}
+
+/* ---------- CATEGORY ITEMS ---------- */
+.item-inner {
+    border-radius: 0.75rem;
+    border: 1px solid #ececec;
+    box-shadow: 0 2px 12px rgba(0,0,0,.05);
+    transition: box-shadow 0.25s, transform 0.25s;
+    background: #fff;
+}
+.categories-item:hover .item-inner {
+    box-shadow: 0 8px 28px rgba(231,76,60,.15);
+    transform: translateY(-4px);
+}
+
+/* ---------- INSTRUCTOR / FACULTY CARDS ---------- */
+.instructor-block {
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0,0,0,.06);
+    transition: box-shadow 0.25s, transform 0.25s;
+    overflow: hidden;
+}
+.instructor-block:hover {
+    box-shadow: 0 12px 36px rgba(231,76,60,.18);
+    transform: translateY(-5px);
+}
+
+/* ---------- CONTACT BAR ---------- */
+.contact-items-wrap {
+    background: linear-gradient(135deg, #f8f8f8 0%, #ffffff 100%);
+    border-top: 3px solid [[setting:brandcolor]];
+    border-bottom: 1px solid #eee;
+    padding: 3rem 0;
+}
+.contact-item {
+    border-top: none;
+    height: auto;
+    padding: 1rem 2rem;
+    border-radius: 0.75rem;
+    transition: background 0.25s;
+}
+.contact-item:hover {
+    background: rgba(231,76,60,.05);
+}
+.contact-item i {
+    color: [[setting:brandcolor]];
+    font-size: 2.2rem;
+}
+
+/* ---------- SOCIAL / STAY-CONNECTED ---------- */
+.stay-connected {
+    background: linear-gradient(135deg, [[setting:maincolor]] 0%, [[setting:brandcolor]] 100%);
+    padding: 3.5rem 0;
+    color: #fff;
+}
+.socialheading {
+    color: #fff !important;
+    font-weight: 700;
+}
+.stay-connected i {
+    background: rgba(255,255,255,.18);
+    border: 2px solid rgba(255,255,255,.45);
+    transition: background 0.22s, transform 0.22s, border-color 0.22s;
+}
+.stay-connected a:hover i {
+    background: #fff;
+    color: [[setting:brandcolor]] !important;
+    border-color: #fff;
+    transform: scale(1.15) translateY(-3px);
+}
+
+/* ---------- SCROLL-TO-TOP ---------- */
+#myBtn {
+    border-radius: 50%;
+    background: [[setting:brandcolor]];
+    box-shadow: 0 4px 16px rgba(231,76,60,.45);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+#myBtn:hover {
+    background: [[setting:maincolor]];
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(231,76,60,.55);
+}
+
+/* ---------- NAVBAR ---------- */
+.navbar-bootswatch {
+    box-shadow: 0 2px 16px rgba(0,0,0,.18);
+}
+
+/* ---------- FOOTER ---------- */
+footer#page-footer {
+    border-top: 2px solid [[setting:brandcolor]];
+    background: #f9f9f9 !important;
+}
+
+/* ---------- CARDS GERAL ---------- */
+.card {
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,.06);
+}
+
+/* ===================================================
+   DASHBOARD REDESIGN – estilo similar ao Moove
+   Afeta apenas páginas internas (logado)
+   =================================================== */
+
+/* Fundo geral das páginas internas */
+body#page-my-index,
+body.pagelayout-mydashboard,
+body.pagelayout-standard,
+body.pagelayout-course {
+    background: #f2f4f8 !important;
+}
+
+/* ---------- SIDEBAR ESQUERDA – fundo escuro ---------- */
+.columnleft {
+    background: #1a1f2e !important;
+    border-right: none !important;
+    min-height: 100vh;
+    padding: 1rem 0 !important;
+}
+.columnleft .card {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+}
+.columnleft .card-body {
+    background: transparent !important;
+    border: none !important;
+}
+/* Títulos dos blocos na sidebar */
+.columnleft .card-title,
+.columnleft .card-title a {
+    color: #a0aec0 !important;
+    font-size: 0.7rem !important;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    padding: 0.75rem 1.25rem 0.25rem !important;
+}
+.columnleft .card-title:before {
+    display: none !important;
+}
+/* Links de navegação */
+.columnleft .block_navigation .block_tree a,
+.columnleft .block_navigation .block_tree p.tree_item,
+.columnleft .block_navigation .block_tree span {
+    color: #cbd5e0 !important;
+    font-size: 0.875rem !important;
+    border-radius: 0.5rem;
+    padding: 0.35rem 1.25rem;
+    display: block;
+    transition: background 0.18s, color 0.18s;
+}
+.columnleft .block_navigation .block_tree a:hover,
+.columnleft .block_navigation .block_tree p.tree_item:hover {
+    background: rgba(255,255,255,.08);
+    color: #fff !important;
+    text-decoration: none;
+}
+.columnleft .block_navigation .block_tree .active_tree_node a,
+.columnleft .block_navigation .block_tree .active_tree_node {
+    background: [[setting:brandcolor]] !important;
+    color: #fff !important;
+    border-radius: 0.5rem;
+}
+/* Itens de árvore - remover decorações */
+.columnleft .block_navigation .block_tree .tree_item.branch {
+    background: transparent !important;
+    padding: 0 !important;
+}
+.columnleft .block_navigation .block_tree .tree_item.branch:hover {
+    background: rgba(255,255,255,.08) !important;
+    border-radius: 0.5rem;
+}
+.columnleft .block_tree.list a {
+    color: #cbd5e0 !important;
+}
+
+/* ---------- ÁREA PRINCIPAL ---------- */
+#region-main-box.region-main,
+.region-main {
+    background: transparent !important;
+    border: none !important;
+}
+#page-content {
+    background: transparent;
+}
+
+/* ---------- SAUDAÇÃO NO TOPO ---------- */
+#page-my-index #page-header,
+.pagelayout-mydashboard #page-header {
+    background: transparent;
+    padding: 1.5rem 1.5rem 0.5rem !important;
+}
+#page-my-index #page-header h1,
+.pagelayout-mydashboard #page-header h1 {
+    font-size: 1.5rem !important;
+    font-weight: 700;
+    color: #1a202c !important;
+}
+
+/* ---------- CARDS DE ESTATÍSTICAS (overview blocks) ---------- */
+.block_myoverview .card,
+.block_recentlyaccesseditems .card,
+.block_starredcourses .card,
+.block_timeline .card,
+.block_calendar_upcoming .card,
+.block_myprofile .card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,.07);
+    border: none;
+    transition: box-shadow 0.22s, transform 0.22s;
+}
+.block_myoverview .card:hover,
+.block_recentlyaccesseditems .card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,.12);
+    transform: translateY(-2px);
+}
+
+/* ---------- CARDS DE CURSO (dashboard-card) ---------- */
+.dashboard-card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,.07);
+    border: none !important;
+    overflow: hidden;
+    transition: box-shadow 0.22s, transform 0.22s;
+}
+.dashboard-card:hover {
+    box-shadow: 0 10px 36px rgba(0,0,0,.13);
+    transform: translateY(-3px);
+}
+.dashboard-card .card-title a {
+    font-weight: 700;
+    color: #1a202c !important;
+    font-size: 0.95rem !important;
+}
+.dashboard-card .card-body {
+    background: #fff !important;
+    border: none !important;
+    padding: 1rem 1.25rem;
+}
+/* Badge de status "Em andamento" */
+.badge.badge-success,
+.badge-info {
+    border-radius: 2rem;
+    font-size: 0.7rem;
+    padding: 0.3em 0.8em;
+    font-weight: 600;
+}
+/* Barra de progresso */
+.progress {
+    border-radius: 2rem;
+    height: 6px;
+    background: #e2e8f0;
+}
+.progress-bar {
+    border-radius: 2rem;
+    background: [[setting:brandcolor]] !important;
+}
+
+/* ---------- ÁREA DA COLUNA DIREITA ---------- */
+.columnright {
+    background: transparent;
+}
+.columnright .card {
+    background: #fff;
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,.07);
+    border: none;
+    margin-bottom: 1.25rem;
+}
+.columnright .card-title,
+.columnright .card-title a {
+    color: #1a202c !important;
+    font-size: 0.9rem !important;
+    font-weight: 700;
+}
+.columnright .card-title:before {
+    display: none !important;
+}
+
+/* ---------- NAVBAR NAS PÁGINAS INTERNAS ---------- */
+body.pagelayout-mydashboard .navbar-bootswatch,
+body.pagelayout-standard .navbar-bootswatch,
+body.pagelayout-course .navbar-bootswatch {
+    background: #fff !important;
+    box-shadow: 0 1px 12px rgba(0,0,0,.08);
+}
+body.pagelayout-mydashboard .navbar-bootswatch .navbar-nav .nav-link,
+body.pagelayout-standard .navbar-bootswatch .navbar-nav .nav-link,
+body.pagelayout-course .navbar-bootswatch .navbar-nav .nav-link {
+    color: #4a5568 !important;
+}
+body.pagelayout-mydashboard a.navbar-brand,
+body.pagelayout-standard a.navbar-brand,
+body.pagelayout-course a.navbar-brand {
+    color: #1a202c !important;
+    font-weight: 700;
+}
+
+/* ---------- CALENDÁRIO ---------- */
+.block_calendar_month .card {
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(0,0,0,.07);
+}
+.block_calendar_month table.minicalendar td.today a {
+    background: [[setting:brandcolor]];
+    color: #fff;
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ---------- FOOTER NAS PÁGINAS INTERNAS ---------- */
+body.pagelayout-mydashboard footer#page-footer,
+body.pagelayout-standard footer#page-footer {
+    background: #fff !important;
+    border-top: 1px solid #e2e8f0;
+    margin-top: 2rem;
+}
+
